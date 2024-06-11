@@ -1,5 +1,6 @@
 <?php
 $parkingSpot = $_GET["parkingSpot"];
+$ratings = $_GET["ratings"];
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
@@ -61,7 +62,7 @@ $hotels = [
         </tr>
         <?php
         foreach ($hotels as $hotel) {
-            if ($hotel["parking"] == $parkingSpot || $parkingSpot == "all") {
+            if (($hotel["parking"] == $parkingSpot || $parkingSpot == "all")&&($hotel["vote"]>=$ratings)) {
                 echo "<tr>";
                 foreach ($hotel as $key => $info) {
                     if ($key == "distance_to_center") {
