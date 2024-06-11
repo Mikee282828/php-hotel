@@ -51,18 +51,51 @@ $hotels = [
 </head>
 
 <body>
+    <form action="index.php" method="GET">
+        <select name="parkingSpot">
+            <option value="all">
+                Qualsiasi
+            </option>
+            <option value="true">
+                Con parcheggio
+            </option>
+            <option value="">
+                Senza parcheggio
+            </option>
+        </select>
+        <select name="ratings">
+            <option value="1">
+                MAGGIORE UGUALE DI 1
+            </option>
+            <option value="2">
+                MAGGIORE UGUALE DI 2
+            </option>
+            <option value="3">
+                MAGGIORE UGUALE DI 3
+            </option>
+            <option value="4">
+                MAGGIORE UGUALE DI 4
+            </option>
+            <option value="5">
+                MAGGIORE UGUALE DI 5
+            </option>
+        </select>
+        <input type="submit">
+    </form>
 
-    <table id="tabellaHotel">
+    <?php
+    if ($ratings != "") {
+        echo '<table id="tabellaHotel">
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Parking</th>
             <th>Ratings</th>
             <th>Distance to city center</th>
-        </tr>
-        <?php
+        </tr>';
+
         foreach ($hotels as $hotel) {
-            if (($hotel["parking"] == $parkingSpot || $parkingSpot == "all")&&($hotel["vote"]>=$ratings)) {
+            if (($hotel["parking"] == $parkingSpot || $parkingSpot == "all") && ($hotel["vote"] >= $ratings)) {
                 echo "<tr>";
                 foreach ($hotel as $key => $info) {
                     if ($key == "distance_to_center") {
@@ -82,9 +115,10 @@ $hotels = [
                 echo "</tr>";
             }
         }
-        ?>
-    </table>
 
+        echo "</table>";
+    }
+    ?>
 </body>
 
 </html>
