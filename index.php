@@ -48,15 +48,26 @@ $hotels = [
 </head>
 
 <body>
-    <h1>
+    
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Parking</th>
+            <th>Ratings</th>
+            <th>Distance to city center</th>
+        </tr>
         <?php
-        foreach ($hotels as $hotelInfo){
-            foreach($hotelInfo as $info){
-                echo "<div>" . $info . "</div>";
-            }   
+        foreach($hotels as $hotel){
+            echo "<tr>";
+            foreach($hotel as $info){
+                echo "<td>" . $info . "</td>";
+            }
+            echo "</tr>";
         }
         ?>
-    </h1>
+    </table>
+
 </body>
 
 </html>
