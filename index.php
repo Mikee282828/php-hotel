@@ -1,4 +1,5 @@
 <?php
+$parkingSpot = $_GET["parkingSpot"];
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
@@ -60,24 +61,25 @@ $hotels = [
         </tr>
         <?php
         foreach ($hotels as $hotel) {
-            echo "<tr>";
-            foreach ($hotel as $key => $info) {
-                if($key == "distance_to_center"){
-                    echo "<td>" . $info . " km" . "</td>";
-                }elseif($key == "parking"){
-                    if($info==true){
-                        echo "<td>Yes</td>";
-                    }else{
-                        echo "<td>No</td>";
+            if ($hotel["parking"] == $parkingSpot || $parkingSpot == "all") {
+                echo "<tr>";
+                foreach ($hotel as $key => $info) {
+                    if ($key == "distance_to_center") {
+                        echo "<td>" . $info . " km" . "</td>";
+                    } elseif ($key == "parking") {
+                        if ($info == true) {
+                            echo "<td>Yes</td>";
+                        } else {
+                            echo "<td>No</td>";
+                        }
+                    } elseif ($key == "vote") {
+                        echo "<td>" . $info . "/5</td>";
+                    } else {
+                        echo "<td>" . $info . "</td>";
                     }
-                }elseif($key == "vote"){
-                    echo "<td>" . $info . "/5</td>";
                 }
-                else{
-                    echo "<td>" . $info . "</td>";
-                }
+                echo "</tr>";
             }
-            echo "</tr>";
         }
         ?>
     </table>
