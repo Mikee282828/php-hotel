@@ -1,6 +1,14 @@
 <?php
-$parkingSpot = $_GET["parkingSpot"];
-$ratings = $_GET["ratings"];
+if(isset($_GET["parkingSpot"])){
+    $parkingSpot = $_GET["parkingSpot"];
+}else{
+    $parkingSpot = "";
+}
+if(isset($_GET["ratings"])){
+    $ratings = $_GET["ratings"];
+}else{
+    $ratings = "";
+}
 $hotels = [
     [
         'name' => 'Hotel Belvedere',
